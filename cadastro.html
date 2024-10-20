@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Participantes</title>
+  <link rel="stylesheet" href="Google Sheet.css">
+</head>
+<body>
+  <div class="container">
+    <form id="formCadastro">
+      <h4>Inscrição no Torneio</h4>
+      <input type="text" name="nome" placeholder="Nome" required>
+      <input type="email" name="email" placeholder="E-mail" required>
+      <input type="submit" value="Enviar" id="submit">
+    </form>
+  </div>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby8IzULjUUPnRxW7kvROqVt0eDopAZrmDU7iHbhGw1eLxxwN4yp9LrLp5g5MeIXqgip/exec';
+    const form = document.getElementById('formCadastro');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => alert('Inscrição realizada com sucesso!'))
+        .catch(error => alert('Erro ao enviar: ' + error.message));
+    });
+  </script>
+</body>
+</html>
